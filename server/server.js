@@ -5,7 +5,7 @@ const db = require('../server/db/db-connection.js');
 
 const app = express();
 
-const PORT = 5005;
+const PORT = 8080;
 app.use(cors());
 app.use(express.json());
 
@@ -15,35 +15,26 @@ app.get('/', (req, res) => {
 });
 
 //create the get request
-app.get('/api/students', cors(), async (req, res) => {
-    // const STUDENTS = [
-
-    //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
-    //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-    //     { id: 3, firstName: 'Fariba', lastName: 'Dako' },
-    //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-    //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-    // ];
-    // res.json(STUDENTS);
+app.get('/api/contacts', cors(), async (req, res) => {
     try{
-        const { rows: students } = await db.query('SELECT * FROM students');
-        res.send(students);
+        const { rows: contacts } = await db.query('SELECT * FROM contacts');
+        res.send(contacts);
     } catch (e){
         return res.status(400).json({e});
     }
 });
 
-//create the POST request
-app.post('/api/students', cors(), async (req, res) => {
-    const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
-    console.log([newUser.firstname, newUser.lastname]);
-    const result = await db.query(
-        'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
-        [newUser.firstname, newUser.lastname]
-    );
-    console.log(result.rows[0]);
-    res.json(result.rows[0]);
-});
+// //create the POST request
+// app.post('/api/students', cors(), async (req, res) => {
+//     const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
+//     console.log([newUser.firstname, newUser.lastname]);
+//     const result = await db.query(
+//         'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
+//         [newUser.firstname, newUser.lastname]
+//     );
+//     console.log(result.rows[0]);
+//     res.json(result.rows[0]);
+// });
 
 // console.log that your server is up and running
 app.listen(PORT, () => {

@@ -40,12 +40,28 @@ const Form = (props) => {
       }).then((response) => {
           return response.json()
       }).then((data) => {
+        //   setContact(contact);
         // console.log("From the post ", data);
         props.addContact(data);
     });
     }
 
+    // //A function to handle the put request
+    // const updateContact = (newContact) => {
+    //     return fetch('http://localhost:8080/api/contacts/${contactId}', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(newContact)
+    //     }).then((response) => {
+    //         return response.json()
+    //     }).then((data) => {
+    //         // console.log("From the post ", data);
+    //         props.addContact(data);
+    //     });
+    // }
+
     const handleSubmit = (e) => {
+        // prevent from forms refreshing when submitted 
         e.preventDefault();
         // console.log("current contact is" + JSON.stringify(contact));
         setContact(contact);

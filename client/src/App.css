@@ -14,7 +14,9 @@
 }
 
 body {
-  background-image: url("https://wallpaperaccess.com/full/824145.jpg");
+  background-color: lavender;
+  /* background-image: url("https://cdn.pixabay.com/photo/2019/03/05/01/59/spring-background-4035402_1280.jpg"); */
   font-family: 'Itim', cursive;
   font-size: 20px;
+  overflow: visible;
 }
